@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react-hooks";
-import useKonamiCode from "./useKonamiCode";
+import useKonamiCode, { konamiSequence } from "./useKonamiCode";
 
 describe("Use Konami Code", () => {
   it("should return the user sequence", () => {
@@ -29,4 +29,16 @@ describe("Use Konami Code", () => {
   
       expect(result.current.sequence).toEqual([]);
   });
+
+  it("should return true if the user types sequence right", () => {
+    const { result } = renderHook(() => useKonamiCode());
+
+    konamiSequence.forEach(key => {
+      act(() => {
+        window.dispatchEvent(new KeyboardEvent("keydown", { key }));
+      });
+    });
+
+    expect(result.current.rightSequence).toBe(true);
+});
 })

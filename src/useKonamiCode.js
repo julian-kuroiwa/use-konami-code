@@ -14,6 +14,7 @@ export const konamiSequence = [
 ];
 
 export default function useKonamiCode() {
+  const [rightSequence, setRightSequence] = useState(false);
   const [sequence, setSequence] = useState([]);
   
   const onKeyDown = event => setSequence(prev => [...prev, event.key]);
@@ -24,6 +25,10 @@ export default function useKonamiCode() {
         setSequence([]);
       }
     });
+
+    if(sequence.toString() === konamiSequence.toString()) {
+      setRightSequence(true);
+    }
   }, [sequence]);
 
   useEffect(() => {
@@ -32,5 +37,5 @@ export default function useKonamiCode() {
     return () => window.addEventListener("keydown", onKeyDown);
   });
 
-  return {sequence};
+  return {sequence, rightSequence};
 };
