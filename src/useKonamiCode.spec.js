@@ -64,4 +64,18 @@ describe("Use Konami Code", () => {
 
     expect(result.current.rightSequence).toBe(true);
   });
+
+  it("should run a callback if the right sequence is typed", () => {
+    const callback = jest.fn();
+    const newSequence = ["k", "j"];
+    const { result } = renderHook(() => useKonamiCode(newSequence, callback));
+
+    newSequence.forEach(key => {
+      act(() => {
+        window.dispatchEvent(new KeyboardEvent("keydown", { key }));
+      });
+    });
+
+    expect(callback).toHaveBeenCalled();
+  });
 })
