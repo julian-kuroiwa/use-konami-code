@@ -40,5 +40,28 @@ describe("Use Konami Code", () => {
     });
 
     expect(result.current.rightSequence).toBe(true);
-});
+  });
+
+  it("should return true if the user types sequence right", () => {
+    const { result } = renderHook(() => useKonamiCode());
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent("keydown", { key: "k" }));
+    });
+
+    expect(result.current.rightSequence).toBe(false);
+  });
+
+  it("should return true if the user types a new sequence right", () => {
+    const newSequence = ["k", "j"];
+    const { result } = renderHook(() => useKonamiCode(newSequence));
+
+    newSequence.forEach(key => {
+      act(() => {
+        window.dispatchEvent(new KeyboardEvent("keydown", { key }));
+      });
+    });
+
+    expect(result.current.rightSequence).toBe(true);
+  });
 })
