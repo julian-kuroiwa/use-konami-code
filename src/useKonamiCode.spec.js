@@ -13,4 +13,20 @@ describe("Use Konami Code", () => {
 
     expect(result.current.sequence).toEqual(["ArrowUp"]);
   });
+
+  it("should reset sequence if the user types a wrong sequence", () => {
+      const { result } = renderHook(() => useKonamiCode());
+  
+      act(() => {
+        window.dispatchEvent(new KeyboardEvent("keydown", {
+          key: "ArrowUp"
+        }));
+
+        window.dispatchEvent(new KeyboardEvent("keydown", {
+          key: "k"
+        }));
+      })
+  
+      expect(result.current.sequence).toEqual([]);
+  });
 })
