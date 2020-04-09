@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# useKonamiCode
 
-## Available Scripts
+> A simple custom react hook to verify a sequence of typed keys from the user. Created by Willian Justen.
 
-In the project directory, you can run:
+## Video 
 
-### `yarn start`
+[Video explaining how this hook was created - PtBr](https://youtu.be/EvR4RPBsHfE)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Class
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Post teaching how to use hook - by Willian Justen](https://willianjusten.com.br/criando-um-react-custom-hook-com-testes/)
 
-### `yarn test`
+## How to use
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+// without defined code and callback
+const { sequence, rightSequence } = useKonamiCode();
 
-### `yarn build`
+const code = ["ArrowDown", "ArrowUp"];
+const callback = () => console.log("Yeeeey");
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+// passing code and callback
+const { sequence, rightSequence } = useKonamiCode(code, callback);
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Types
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Parameters
 
-### `yarn eject`
+- `code`: _(Array)_ - a sequence of keys that should be verified. (default: `["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"]`)
+- `callback`: _(Function)_ - a function to run if the correct sequence is provided. (default: `() => {}`)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Returns
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `sequence` _(Array)_: sequence of keys from the user.
+- `rightSequence` _(Boolean)_: a boolean to indicate if the user typed the right sequence or not.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
